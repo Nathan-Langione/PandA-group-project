@@ -5,15 +5,17 @@ import { Link, navigate } from '@reach/router';
 const RecipeForm = () => {
     const [recipeTitle, setRecipeTitle] = useState("");
     const [recipeImg, setRecipeImg] = useState("");
+    const [recipeBriefDescrip, setRecipeBriefDescrip] = useState("");
     const [recipeIngredients, setRecipeIngredients] = useState("");
     const [recipeInstructions, setRecipeInstructions] = useState("");
     const [errors,setErrors] = useState([]);
 
     const onSubmitHandler = e => {
         e.preventDefault();
-        axios.post('http://localhost:8000/api/recs/dining', {
+        axios.post('http://localhost:8000/api/recipe', {
             recipeTitle,
             recipeImg,
+            recipeBriefDescrip,
             recipeIngredients,
             recipeInstructions, 
         })
@@ -26,6 +28,7 @@ const RecipeForm = () => {
             })
     }
     return (
+        <>
         <div style={{margin: "50px", padding:"10px", border:"1px solid black"}}>
             <form onSubmit={onSubmitHandler}>
                 <header><b><u>Create a New Recipe</u></b></header>
@@ -38,10 +41,18 @@ const RecipeForm = () => {
                     }
                 </p>
                 <p>
-                    <label style={{margin: "5px"}}><b>Recipe Title:</b></label>
+                    <label style={{margin: "5px"}}><b>Recipe Image:</b></label>
                     <input type="text" onChange={(e) => setRecipeImg(e.target.value)} />
                     {errors.recipeImg ?
                         <p style={{color: "red"}}><em>{errors.recipeImg.message}</em></p>
+                        : null
+                    }
+                </p>
+                <p>
+                    <label style={{margin: "5px"}}><b>Brief Description:</b></label>
+                    <input type="text" onChange={(e) => setRecipeBriefDescrip(e.target.value)} />
+                    {errors.recipeBriefDescrip ?
+                        <p style={{color: "red"}}><em>{errors.recipeBriefDescrip.message}</em></p>
                         : null
                     }
                 </p>
@@ -65,6 +76,29 @@ const RecipeForm = () => {
             </form>
             <button style={{backgroundColor: "blue", color: "white"}} onClick={() => {navigate("/")}}>Return Home</button>
         </div>
+
+        {/* Example Recipe Card using form */}
+        <div className='Recipe-Table'>
+        <table>
+            <tr>
+                <td>
+                    <div className='Recipe-Card'>
+                        <header onChange={(e) => setRecipeTitle(e.target.value)}>{recipeTitle}</header>
+                        <img src={recipeImg} style={{width: "200px"}}/>
+                        <p>{recipeBriefDescrip}</p>
+                    </div>
+                </td>
+                <td>
+                    <div className='Recipe-Card'>Recipe 1</div>
+                </td>
+                <td>
+                    <div className='Recipe-Card'>Recipe 1</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+        </>
+        
     )
 }
 
