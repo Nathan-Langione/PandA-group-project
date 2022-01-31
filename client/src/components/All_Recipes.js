@@ -19,19 +19,22 @@ const AllRecipes = () => {
     return (
         <>
             {/* With server, should map new recipe from form to individual card */}
-            <div className='Recipe-Table'>
+            <div>
                 <table>
                     <tbody>
                         {
                             recipeList ?
                                 recipeList.map((recipe, index) => (
                                     <tr key={index}>
-                                        <td>
-                                            <div className='Recipe-Card'>
-                                                <header>{recipe.recipeTitle}</header>
-                                                <img src={recipe.recipeImg} />
-                                                <p>{recipe.recipeBriefDescrip}</p>
+                                        <td className='Recipe-Table'>
+                                            <div>
+                                                <div className='Recipe-Card'>
+                                                    <header>{recipe.recipeTitle}</header>
+                                                    <img src={recipe.recipeImg} />
+                                                    <p>{recipe.recipeBriefDescrip}</p>
+                                                </div>
                                             </div>
+                                            
                                         </td>
                                     </tr>
                                 ))

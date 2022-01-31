@@ -78,21 +78,27 @@ const RecipeForm = () => {
         </div>
 
         {/* Example Recipe Card using form */}
-        <div className='Recipe-Table'>
+        <div>
         <table>
             <tr>
-                <td>
-                    <div className='Recipe-Card'>
-                        <header onChange={(e) => setRecipeTitle(e.target.value)}>{recipeTitle}</header>
-                        <img src={recipeImg} style={{width: "200px"}}/>
-                        <p>{recipeBriefDescrip}</p>
+                <td className='Recipe-Table'>
+                    <div>
+                        <div className='Recipe-Card'>
+                            <header onChange={(e) => setRecipeTitle(e.target.value)}>{recipeTitle}</header>
+                            <img src={recipeImg} style={{width: "200px"}}/>
+                            <p>{recipeBriefDescrip}</p>
+                        </div>
                     </div>
                 </td>
-                <td>
-                    <div className='Recipe-Card'>Recipe 1</div>
+                <td className='Recipe-Table'>
+                    <div>
+                        <div className='Recipe-Card'>Recipe 1</div>
+                    </div>
                 </td>
-                <td>
-                    <div className='Recipe-Card'>Recipe 1</div>
+                <td className='Recipe-Table'>
+                    <div>
+                        <div className='Recipe-Card'>Recipe 1</div>
+                    </div>
                 </td>
             </tr>
         </table>
