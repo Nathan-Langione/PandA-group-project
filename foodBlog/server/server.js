@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 require("./config/mongoose.config");
 
 // Add all of the routes
-//require('./routes/')(app);
+require('./routes/post.routes')(app);
 
 // Start the server listening on desired port
 app.listen(8000, () => {
